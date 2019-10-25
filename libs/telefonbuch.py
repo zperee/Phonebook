@@ -17,8 +17,19 @@ def eintrag_speichern(name, telefon_nummer):
     with open('telefonbuch.txt', "w", encoding="utf-8") as open_file:
         json.dump(telefonbuch, open_file)
 
-    
+def eintrag_speichern_von_formular(form_request):
+    print(form_request)
+    name = form_request.get('name')
+    phone = form_request.get('phone')
+    eintrag_speichern(name, phone)
 
+
+def person_suchen(form_request):
+    telefonbuch = telefonbuch_lesen()
+    name = form_request.get('name')
+
+    if name in telefonbuch:
+        return {name: telefonbuch[name]}
 
     
 
