@@ -11,7 +11,11 @@ app = Flask("Telefonbuch")
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("telefonbuch.html")
+    telbuchdaten = telefonbuch.telefonbuch_lesen()
+    return render_template("telefonbuch.html", telbuch=telbuchdaten)
+
+
+
 
 @app.route("/search/<name>")
 @app.route("/search", methods=['GET', 'POST'])
@@ -21,6 +25,8 @@ def search(name=None):
 @app.route("/add", methods=['GET', 'POST']) 
 def add():
     return "add"
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
